@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAYbox</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script> <!-- Razorpay Checkout script -->
+    <script src="script.js"></script>
+    <style>
+        body {
+            background-color: #f5f5f5; /* Light background */
+            color: #333333; /* Dark text color */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #ffffff; /* White header background */
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .header .logo {
+            color: #333333; /* Dark logo color */
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .header .navbar a {
+            color: #333333; /* Dark text for navbar */
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        .header .navbar a:hover {
+            color: #0615e9; /* Highlight color */
+        }
+
+        /* Button styles */
+        .btn {
+            background-color: #0923ee; /* Button color */
+            color: #ffffff; /* Button text color */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 5px; /* Rounded button corners */
+        }
+
+        .btn:hover {
+            background-color: #3a0cf5; /* Button hover color */
+        }
+
+        /* Input styles */
+        input.box,
+        select.box {
+            background-color: #ffffff; /* Input background */
+            color: #333333; /* Input text color */
+            border: 1px solid #cccccc; /* Input border color */
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border-radius: 5px; /* Rounded corners for inputs */
+        }
+
+        input.box:focus,
+        select.box:focus {
+            border-color: #360be1; /* Input focus border color */
+            outline: none; /* Remove outline */
+        }
+
+        /* Form container styles */
+        #login-form-container,
+        #subscribe-form-container {
+            background-color: #ffffff; /* Form container background */
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        h3 {
+            margin-bottom: 15px;
+            color: #333333; /* Header color in forms */
+        }
+
+        /* Home section styles */
+        .home {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .home h1 {
+            color: #1114e6; /* Highlighted heading color */
+        }
+
+        .home img {
+            max-width: 100%; /* Responsive image */
+        }
+
+        /* Challenges section styles */
+        .challenges {
+            padding: 60px 50px; /* Increased padding */
+            text-align: center;
+            background-color: #ffffff; /* White background for challenges section */
+            margin-top: 30px;
+            box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .challenges h2 {
+            color: #333333; /* Header color */
+            margin-bottom: 50px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .grid-item {
+            background-color: #f9f9f9; /* Slightly lighter background for grid items */
+            border: 1px solid #dddddd; /* Border color for grid items */
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .grid-item img {
+            max-width: 100%; /* Responsive image inside grid items */
+            border-radius: 8px; /* Rounded corners for images */
+            margin-bottom: 10px; /* Space below images */
+        }
+
+        .grid-item h3 {
+            color: #333333; /* Header color inside grid items */
+            margin-bottom: 10px;
+        }
+
+        .grid-item p {
+            color: #666666; /* Text color inside grid items */
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px); /* Slight lift effect on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+        }
+
+        /* Responsive navbar */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+
+            .navbar a {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div id="menubar" class="fa-solid fa-bars-staggered"></div>
+        <a href="#" class="logo">
+            <img src="loginlogo.png" alt="Logo" width="30" height="30">
+            PLAY<span>box</span>
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="games.html" id="games-btn">Games</a>
+            <a href="services.html">Services</a>
+            <a href="featured.html">Featured</a>
+            <a href="reviews.html">Review</a>
+            <a href="help.html">Help</a>
+            
+        </nav>
+
+        <!-- log in button -->
+        <div id="login-btn">
+            <button type="button" class="btn"><span>Login</span></button>
+            <i class="fa-solid fa-user-tie"></i>
+        </div>
+    </header>
+    
+
+
+    <!-- login form -->
+    <div id="login-form-container">
+        <span class="fa-solid fa-xmark" id="close-login-btn"></span>
+
+        <form id="login-form">
+            <h3>user login</h3>
+            <input type="email" placeholder="email" class="box" id="email">
+            <input type="password" placeholder="password" class="box" id="password">
+            <p>forget your password <a href="#">click here</a></p>
+            <input type="button" value="login now" class="btn" id="login-now-btn">
+            
+            <p>or login with</p>
+            <div class="buttons">
+                <a href="https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email%20profile" id="google-login">Google</a>
+                <a href="#">facebook</a>
+            </div>
+        
+            <p>don't have an account <a href="#">create one</a></p>
+        </form>
+    </div>
+
+    <!-- subscribe form -->
+    <div id="subscribe-form-container">
+        <span class="fa-solid fa-xmark" id="close-subscribe-btn"></span>
+
+        <form id="subscribe-form">
+            <h3>subscribe now</h3>
+            <input type="email" placeholder="email" class="box" id="subscribe-email"> <!-- Add ID for easy access -->
+            <select class="box" id="subscription-plan"> <!-- Add ID for easy access -->
+                <option value="12900">₹129 MONTHLY</option> <!-- Amount in paise -->
+                <option value="59900">₹599 6 MONTHS</option> <!-- Amount in paise -->
+            </select>
+            <input type="button" value="subscribe now" class="btn" id="subscribe-now-btn">
+        </form>
+    </div>
+
+    <!-- home section starts -->
+    <section class="home" id="home">
+        <h1 class="home-parallax" data-speed="-2">Looking for GameZ!?</h1>
+        <img class="home-parallax" data-speed="5" src="POpular games 1.png" alt="">
+        <button type="button" class="btn" id="subscribe-btn"><span>Subscribe</span></button>
+    </section>
+
+    <!-- Challenges section -->
+    <section class="WHAT IS UNIQUE">
+        <h2>WHAT IS UNIQUE</h2>
+        <div class="grid">
+            <div class="grid-item">
+                <img src="innovation.jpg" alt="Challenge 1 Image"> <!-- Placeholder for Challenge 1 image -->
+                <h3>we are unique</h3>
+                <p>Describe a problem faced in the gaming community.</p>
+            </div>
+            <div class="grid-item">
+                <img src="affordable.jpg.png" alt="Challenge 2 Image"> <!-- Placeholder for Challenge 2 image -->
+                <h3>we are affordable</h3>
+                <p>Discuss a common issue in multiplayer games.</p>
+            </div>
+            <div class="grid-item">
+                <img src="all in one.jpg.png" alt="Challenge 3 Image"> <!-- Placeholder for Challenge 3 image -->
+                <h3>everything at one place</h3>
+                <p>Describe a problem that is common across multiple games.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://kit.fontawesome.com/9c4d9d41f2.js" crossorigin="anonymous"></script>
+    <script>
+        // Razorpay payment integration
+       // Razorpay payment integration
+document.getElementById('subscribe-now-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    var email = document.getElementById('subscribe-email').value;
+    var planAmount = document.getElementById('subscription-plan').value;
+
+    var options = {
+        "key": "rzp_test_a7Mo6VXsA6nHHa", // Replace with your Razorpay key ID
+        "amount": planAmount, // Amount in paise
+        "currency": "INR",
+        "name": "PLAYbox Subscription",
+        "description": "Subscription Payment",
+        "image": "https://your-logo-url.com", // Optional: Add your logo URL here
+        "handler": function (response) {
+            alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+            
+            // Redirect to games page with download flag
+            window.location.href = "games.html?subscription_success=true";
+        },
+        "prefill": {
+            "email": email // Pre-fill with user email from the form
+        },
+        "theme": {
+            "color": "#F37254"
+        }
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.open();
+});
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        .help-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 20px;
+        }
+
+        p {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="help-container">
+        <h1>Help and Support</h1>
+        <p>If you have any questions or need assistance with our services, you can find the answers below:</p>
+
+        <h2>Common Questions</h2>
+        <p><strong>1. How do I make a payment?</strong><br>
+        To make a payment, navigate to the payment gateway and fill in your card details. Ensure all fields are correctly filled out before submitting.</p>
+
+        <p><strong>2. What should I do if I encounter issues?</strong><br>
+        If you face any issues, please contact our support team through the contact form available on our website.</p>
+
+        <p><strong>3. How can I download games?</strong><br>
+        Once your payment is successful, the download button will appear in the games section for you to download your purchased games.</p>
+
+        <h2>Contact Support</h2>
+        <p>If you still need help, please reach out to our support team:</p>
+        <p>Email: support@playbox.com<br>
+        Phone: (123) 456-7890</p>
+
+        <button class="home-button" onclick="goToHomePage()">Go to Home Page</button>
+    </div>
+
+    <script>
+        // Function to redirect to the home page
+        function goToHomePage() {
+            window.location.href = 'index.html'; // Replace with your actual homepage URL
+        }
+    </script>
+</body>
+</html>

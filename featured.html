@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Game of the Month</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .featured-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full screen */
+            background-image: url('bm.jpg'); /* Replace with your featured game image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3em;
+            z-index: 2;
+        }
+
+        p {
+            font-size: 1.5em;
+            z-index: 2;
+        }
+
+        .home-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            z-index: 2;
+        }
+
+        .home-button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="featured-container">
+        <div class="overlay"></div>
+        <h1>Game of the Month</h1>
+        <p><strong>BLACK MYTH WUKONG</strong></p> <!-- Replace with the featured game's title -->
+        <p>A journey of epic battles and exploration awaits you.
+            IFYKYK LOL!!!!!
+        </p> <!-- Replace with a description -->
+        <button class="home-button" onclick="goToHomePage()">Go to Home Page</button>
+    </div>
+
+    <script>
+        // Function to redirect to the home page
+        function goToHomePage() {
+            window.location.href = 'index.html'; // Replace with your actual homepage URL
+        }
+    </script>
+</body>
+</html>

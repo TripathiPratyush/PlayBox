@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaur Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        canvas {
+            border: 2px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dinosaur Game</h1>
+    <div class="game-container">
+        <canvas id="dino-game" width="800" height="200"></canvas>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('dino-game');
+        const ctx = canvas.getContext('2d');
+
+        // Dinosaur image
+        const dinoImage = new Image();
+        dinoImage.src = 'diansaur.jpg'; // Path to your dinosaur image
+
+        // Obstacle image
+        const cactusImage = new Image();
+        cactusImage.src = 'cactus2.jpg'; // Path to your cactus image
+
+        let dino = { x: 50, y: 150, width: 50, height: 50, vy: 0, gravity: 0.5 };
+        let cactus = { x: 800, y: 150, width: 50, height: 50 };
+
+        let isJumping = false;
+        let score = 0;
+        let gameOver = false;
+
+        function update() {
+            if (!gameOver) {
+                // Gravity for the dinosaur
+                dino.vy += dino.gravity;
+                dino.y += dino.vy;
+
+                // Prevent the dinosaur from falling below the ground
+                if (dino.y > 150) {
+                    dino.y = 150;
+                    dino.vy = 0;
+                    isJumping = false;
+                }
+
+                // Move the cactus to the left
+                cactus.x -= 5;
+
+                // If cactus moves off screen, reset its position and increase score
+                if (cactus.x < -cactus.width) {
+                    cactus.x = canvas.width;
+                    score++;
+                }
+
+                // Check for collision
+                if (cactus.x < dino.x + dino.width && cactus.x + cactus.width > dino.x &&
+                    cactus.y < dino.y + dino.height && cactus.y + cactus.height > dino.y) {
+                    gameOver = true;
+                }
+
+                // Clear the canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw the dinosaur image
+                ctx.drawImage(dinoImage, dino.x, dino.y, dino.width, dino.height);
+
+                // Draw the cactus image
+                ctx.drawImage(cactusImage, cactus.x, cactus.y, cactus.width, cactus.height);
+
+                // Display the score
+                ctx.fillStyle = "#000";
+                ctx.font = "20px Arial";
+                ctx.fillText("Score: " + score, 700, 50);
+
+                requestAnimationFrame(update);
+            } else {
+                // Game over text
+                ctx.fillStyle = "red";
+                ctx.font = "30px Arial";
+                ctx.fillText("Game Over", canvas.width / 2 - 80, canvas.height / 2);
+            }
+        }
+
+        // Jump functionality
+        window.addEventListener('keydown', function (e) {
+            if (e.code === 'Space' && !isJumping) {
+                dino.vy = -12; // Jump velocity
+                isJumping = true;
+            }
+        });
+
+        // Start the game loop
+        dinoImage.onload = function () {
+            update();
+        };
+    </script>
+</body>
+</html>

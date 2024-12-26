@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Button styling */
+        .home-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Our Services</h1>
+        <p>
+            Welcome to our gaming subscription service! At PlayBox, we provide access to a vast library of games from various genres, ensuring that every gamer finds something to enjoy. 
+        </p>
+        <p>
+            Our platform offers seamless downloads, exclusive titles, and regular updates, making your gaming experience smooth and enjoyable. Whether you're into action, adventure, or puzzle games, we have you covered.
+        </p>
+        <p>
+            We prioritize user satisfaction and continuously strive to enhance our services. Join us today and elevate your gaming experience to a whole new level!
+        </p>
+        <button class="home-button" onclick="goToHomePage()">Go to Home Page</button>
+    </div>
+
+    <script>
+        // Function to redirect to the home page
+        function goToHomePage() {
+            window.location.href = 'index.html'; // Replace 'index.html' with your actual home page URL
+        }
+    </script>
+</body>
+</html>

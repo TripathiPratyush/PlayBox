@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .home-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #3e8e41;
+        }
+
+        .buy-button, .play-button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button {
+            background-color: #007bff;
+        }
+
+        .buy-button:hover {
+            background-color: #0069d9;
+        }
+
+        .play-button {
+            background-color: #28a745;
+            display: none; /* Initially hidden */
+        }
+
+        .play-button:hover {
+            background-color: #218838;
+        }
+
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .game {
+            text-align: center;
+        }
+
+        .game img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+    <!-- Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <main>
+        <section id="games-section">
+            <h2>Available Games</h2>
+            <div class="game-list">
+                <!-- Game Cards -->
+                <div class="game">
+                    <img src="Dark_Souls_Cover_Art.jpg" alt="Dark Souls" class="game-image">
+                    <h3>DARK SOULS</h3>
+                    <button class="buy-button" onclick="payNow('DARK SOULS', 49900)">Buy</button>
+                    <button class="play-button">Download</button>
+                </div>
+                <div class="game">
+                    <img src="Ghost_of_Tsushima.jpg" alt="Ghost of Tsushima" class="game-image">
+                    <h3>GHOST OF TSUSHIMA</h3>
+                    <button class="buy-button" onclick="payNow('GHOST OF TSUSHIMA', 59900)">Buy</button>
+                    <button class="play-button">Download</button>
+                </div>
+                <div class="game">
+                    <img src="hogwards legacy.jpg" alt="Hogwarts Legacy" class="game-image">
+                    <h3>HOGWARTS LEGACY</h3>
+                    <button class="buy-button" onclick="payNow('HOGWARTS LEGACY', 69900)">Buy</button>
+                    <button class="play-button">Download</button>
+                </div>
+                <div class="game">
+                    <img src="SPIDERMAN 2.jpg" alt="Spider-Man 2" class="game-image">
+                    <h3>SPIDERMAN 2</h3>
+                    <button class="buy-button" onclick="payNow('SPIDERMAN 2', 79900)">Buy</button>
+                    <button class="play-button">Download</button>
+                </div>
+                <div class="game">
+                    <img src="elden ring.jpg" alt="Elden Ring" class="game-image">
+                    <h3>ELDEN RING</h3>
+                    <button class="buy-button" onclick="payNow('ELDEN RING', 89900)">Buy</button>
+                    <button class="play-button">Download</button>
+                </div>
+                <div class="game">
+                    <img src="Red_Dead_Redemption_II.jpg" alt="Red Dead Redemption 2" class="game-image">
+                    <h3>RED DEAD REDEMPTION 2</h3>
+                    <button class="buy-button" onclick="payNow('RED DEAD REDEMPTION 2', 99900)">Buy</button>
+                    <button class="play-button">Download</button>
+                </div>
+                <div class="game">
+                    <img src="BATMAN.JPG" alt="Batman: Arkham Knight" class="game-image">
+                    <h3>ARKHAM KNIGHT</h3>
+                    <button class="buy-button" onclick="payNow('ARKHAM KNIGHT', 49900)">Buy</button>
+                    <button class="play-button">Download</button>
+                </div>
+                <div class="game">
+                    <img src="God_of_War_4_cover.jpg" alt="God of War" class="game-image">
+                    <h3>GOD OF WAR</h3>
+                    <button class="buy-button" onclick="payNow('GOD OF WAR', 79900)">Buy</button>
+                    <button class="play-button">Download</button>
+                </div>
+                <div class="game">
+                    <img src="diansaur.jpg" alt="Dinosaur Game" class="game-image">
+                    <h3>Dinosaur Game</h3>
+                    <button class="buy-button" onclick="payNow('Dinosaur Game', 19900)">Buy</button>
+                    <button class="play-button" onclick="playDinoGame()">Play</button>
+                </div>
+            </div>
+            <button class="home-button" onclick="goToHomePage()">Go to Home Page</button>
+        </section>
+    </main>
+
+    <script>
+        // Redirect to Home Page
+        function goToHomePage() {
+            window.location.href = 'index.html';
+        }
+
+        // Razorpay Payment Handler
+        function payNow(gameName, amount) {
+            var options = {
+                "key": "rzp_test_a7Mo6VXsA6nHHa",
+                "amount": amount,
+                "currency": "INR",
+                "name": "Game Purchase",
+                "description": gameName,
+                "image": "https://example.com/logo.png",
+                "handler": function (response) {
+                    alert("Payment successful for " + gameName + ". Payment ID: " + response.razorpay_payment_id);
+                    localStorage.setItem(gameName + 'PaymentSuccess', 'true');
+                    window.location.reload();
+                },
+                "prefill": {
+                    "name": "Your Name",
+                    "email": "email@example.com",
+                    "contact": "9999999999"
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+
+        // Check for subscription success URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const subscriptionSuccess = urlParams.get('subscription_success');
+
+        // Display download buttons for all games if subscription is active
+        if (subscriptionSuccess) {
+            document.querySelectorAll('.play-button').forEach(button => {
+                button.style.display = 'block';
+            });
+        } else {
+            // Display play button only if the user has purchased the game
+            const games = [
+                'DARK SOULS', 'GHOST OF TSUSHIMA', 'HOGWARTS LEGACY', 'SPIDERMAN 2', 
+                'ELDEN RING', 'RED DEAD REDEMPTION 2', 'ARKHAM KNIGHT', 'GOD OF WAR', 'Dinosaur Game'
+            ];
+
+            games.forEach((game, index) => {
+                if (localStorage.getItem(game + 'PaymentSuccess') === 'true') {
+                    const gameButton = document.querySelector(.game:nth-child(${index + 1}) .play-button);
+                    gameButton.style.display = 'block';
+                    localStorage.removeItem(game + 'PaymentSuccess');
+                }
+            });
+        }
+
+        // Play Dinosaur Game
+        function playDinoGame() {
+            window.location.href = 'dinosaur-game.html';
+        }
+    </script>
+</body>
+</html>

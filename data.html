@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAYbox</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#subscriptions">Subscriptions</a></li>
+                <li><a href="#payments">Payments</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h1>Welcome to PLAYbox</h1>
+            <p>Discover new games and read reviews from our community</p>
+            <button>Get Started</button>
+        </section>
+        <section id="games">
+            <h1>Games</h1>
+            <ul id="game-list">
+                <!-- Game list will be populated here -->
+            </ul>
+        </section>
+        <section id="reviews">
+            <h1>Reviews</h1>
+            <ul id="review-list">
+                <!-- Review list will be populated here -->
+            </ul>
+        </section>
+        <section id="about">
+            <h1>About Us</h1>
+            <p>We're a community of gamers who love to play and review games</p>
+        </section>
+        <section id="subscriptions">
+            <h1>Subscriptions</h1>
+            <ul id="subscription-list">
+                <!-- Subscription list will be populated here -->
+            </ul>
+        </section>
+        <section id="payments">
+            <h1>Payments</h1>
+            <ul id="payment-list">
+                <!-- Payment list will be populated here -->
+            </ul>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+    <script>
+        // Get the game list element
+        const gameList = document.getElementById('game-list');
+
+        // Get the review list element
+        const reviewList = document.getElementById('review-list');
+
+        // Get the subscription list element
+        const subscriptionList = document.getElementById('subscription-list');
+
+        // Get the payment list element
+        const paymentList = document.getElementById('payment-list');
+
+        // Function to populate the game list
+        function populateGameList(games) {
+            games.forEach(game => {
+                const gameItem = document.createElement('li');
+                gameItem.textContent = game.title;
+                gameList.appendChild(gameItem);
+            });
+        }
+
+        // Function to populate the review list
+        function populateReviewList(reviews) {
+            reviews.forEach(review => {
+                const reviewItem = document.createElement('li');
+                reviewItem.textContent = review.review;
+                reviewList.appendChild(reviewItem);
+            });
+        }
+
+        // Function to populate the subscription list
+        function populateSubscriptionList(subscriptions) {
+            subscriptions.forEach(subscription => {
+                const subscriptionItem = document.createElement('li');
+                subscriptionItem.textContent = subscription.subscription_plan;
+                subscriptionList.appendChild(subscriptionItem);
+            });
+        }
+
+        // Function to populate the payment list
+        function populatePaymentList(payments) {
+            payments.forEach(payment => {
+                const paymentItem = document.createElement('li');
+                paymentItem.textContent = payment.payment_method;
+                paymentList.appendChild(paymentItem);
+            });
+        }
+
+        // Fetch games data from API
+        axios.get('http://localhost:3000/api/games')
+            .then(response => {
+                const games = response.data;
+                populateGameList(games);
+            })
+            .catch(error => console.error('Error:', error));
+
+        // Fetch reviews data from API
+        axios.get('http://localhost:3000/api/reviews')
+            .then(response => {
+                const reviews = response.data;
+                populateReviewList(reviews);
+            })
+            .catch(error => console.error('Error:', error));
+
+        // Fetch subscriptions data from API
+        axios.get('http://localhost:3000/api/subscriptions')
+            .then(response => {
+                const subscriptions = response.data;
+                populateSubscriptionList(subscriptions);
+            })
+            .catch(error => console.error('Error:', error));
+
+        // Fetch payments data from API
+        axios.get('http://localhost:3000/api/payments')
+            .then(response => {
+                const payments = response.data;
+                populatePaymentList(payments);
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
